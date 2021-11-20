@@ -26,7 +26,7 @@ private:
 		delete[] container_;
 		container_ = temporary;
 	}
-	
+
 	void ShiftContainer(int fromIndex, bool rightShift)
 	{
 		if (rightShift)
@@ -62,7 +62,7 @@ public:
 		{
 			ExpandContainer(true);
 		}
-		
+
 		container_[itemCount_] = item;
 		itemCount_++;
 
@@ -137,16 +137,28 @@ public:
 		return false;
 	}
 
-	T Get(unsigned int index)
+	T* Get(unsigned int index)
 	{
 		if (index < itemCount_ && index >= 0)
 		{
-			return container_[index];
+			return &container_[index];
 		}
 		else
 		{
-			throw invalid_argument("Recieved invalid index value!");
+			return nullptr;
 		}
+	}
+
+	T* Find(T item)
+	{
+		for (int i = 0; i < itemCount_; i++)
+		{
+			if (container_[i] == item)
+			{
+				return &container_[i];
+			}
+		}
+		return nullptr;
 	}
 
 	unsigned int Length()
@@ -178,23 +190,6 @@ public:
 			return true;
 		}
 		return false;
-	}
-
-	string StringInfo()
-	{
-		string info = "";
-
-		info.append("\nIncrement amount: ");
-		info.append(to_string(increment_amount));
-
-		info.append("\nLength: ");
-		info.append(to_string(itemCount_));
-
-		info.append("\nContainer length: ");
-		info.append(to_string(containerLength_));
-
-		return info;
-
 	}
 
 	~darray()

@@ -9,7 +9,15 @@ using namespace std;
 
 int main()
 {
-	
+	darray<char> d;
+
+	d.Push('a');
+	d.Push('n');
+	d.Push('c');
+	d.Push('d');
+	char pes = *d.Find('f');
+	cout << pes;
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
